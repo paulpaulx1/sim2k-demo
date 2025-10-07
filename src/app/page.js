@@ -1,103 +1,489 @@
-import Image from "next/image";
+'use client';
+import React, { useEffect, useState } from 'react';
+import { Menu, X, Shield, Lock, Server, Cloud, CheckCircle, Award } from 'lucide-react';
 
-export default function Home() {
+/* -------------------- SEO Component -------------------- */
+const SEOHead = () => {
+  useEffect(() => {
+    document.title = "Indianapolis IT Outsourcing & IT Consulting | SIM2K - Since 1999";
+
+    const metaTags = [
+      { name: "description", content: "Indianapolis IT outsourcing, IT consulting, and cybersecurity solutions. 25+ years protecting businesses with managed IT services, CMMC consulting, and IT outsourcing. Call 317-251-7920." },
+      { name: "keywords", content: "IT outsourcing Indianapolis, Indianapolis IT outsourcing, IT consulting Indianapolis, Indianapolis IT consulting, IT outsourcing services Indianapolis, managed services Indianapolis, cybersecurity Indianapolis, CMMC consulting, Cyber AB Registered" },
+      { property: "og:title", content: "Indianapolis IT Outsourcing & IT Consulting | SIM2K - Since 1999" },
+      { property: "og:description", content: "Trusted IT outsourcing, IT consulting, managed IT services, and cybersecurity solutions for Indianapolis businesses. Cyber AB Registered CMMC consultant since 1999." },
+      { property: "og:type", content: "website" },
+    ];
+
+    metaTags.forEach(({ name, property, content }) => {
+      const selector = name ? `meta[name="${name}"]` : `meta[property="${property}"]`;
+      let meta = document.querySelector(selector);
+      if (!meta) {
+        meta = document.createElement('meta');
+        if (name) meta.setAttribute('name', name);
+        if (property) meta.setAttribute('property', property);
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', content);
+    });
+  }, []);
+
+  return null;
+};
+
+/* -------------------- Navigation -------------------- */
+const Navigation = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const cls = ['overflow-hidden', 'touch-none'];
+    if (isMobileMenuOpen) {
+      document.documentElement.classList.add(...cls);
+      document.body.classList.add(...cls);
+    } else {
+      document.documentElement.classList.remove(...cls);
+      document.body.classList.remove(...cls);
+    }
+    return () => {
+      document.documentElement.classList.remove(...cls);
+      document.body.classList.remove(...cls);
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [setIsMobileMenuOpen]);
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg' : 'bg-slate-900/40'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between">
+            <a href="#" className="flex items-center gap-3 text-white hover:opacity-90 transition-opacity">
+              <img 
+                src="/sim2k_light_logo.png" 
+                alt="SIM2K - Indianapolis IT Support and Cybersecurity"
+                className="h-16 w-auto md:h-20"
+              />
+            </a>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="hidden md:flex items-center space-x-8 text-white/90">
+              {[
+                ['#it-outsourcing', 'IT Outsourcing'],
+                ['#it-consulting', 'IT Consulting'],
+                ['#cybersecurity', 'Cybersecurity'],
+                ['#cmmc-consulting', 'CMMC Consulting'],
+              ].map(([href, label]) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="hover:text-orange-400 transition-colors tracking-wide relative group"
+                >
+                  {label}
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-orange-400 transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+              <a 
+                href="tel:317-251-7920"
+                className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-md transition-all duration-300 transform hover:scale-105 font-semibold"
+              >
+                317-251-7920
+              </a>
+            </div>
+
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className={`md:hidden text-white ${isMobileMenuOpen ? 'hidden' : ''}`}
+              aria-label="Open menu"
+            >
+              <Menu size={24} />
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </nav>
+
+      <div
+        className={`fixed inset-0 z-[60] md:hidden transition-opacity duration-300 ${
+          isMobileMenuOpen ? 'bg-black/40 backdrop-blur-sm opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        onClick={() => setIsMobileMenuOpen(false)}
+      >
+        <aside
+          className={`absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-slate-900/98 border-l border-orange-500/20 text-white transition-transform duration-300 ${
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          onClick={e => e.stopPropagation()}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div className="flex items-center justify-between px-5 py-4 border-b border-orange-500/20">
+            <span className="text-lg font-semibold">Menu</span>
+            <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu">
+              <X size={22} />
+            </button>
+          </div>
+
+          <nav className="px-5">
+            {['IT Outsourcing', 'IT Consulting', 'Cybersecurity', 'CMMC Compliance'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase().replace(' ', '-')}`}
+                className="block py-3 text-white/90 hover:text-orange-400 border-b border-white/10 last:border-b-0 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item}
+              </a>
+            ))}
+            <a 
+              href="tel:317-251-7920"
+              className="block w-full mt-6 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-md transition-all text-center font-semibold"
+            >
+              Call 317-251-7920
+            </a>
+          </nav>
+        </aside>
+      </div>
+    </>
+  );
+};
+
+/* -------------------- Hero Section -------------------- */
+const HeroSection = () => {
+  return (
+    <div className="relative h-screen overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: 'url(./Indianapolis_compressed.jpeg)',
+          backgroundPosition: 'center 40%'
+        }}
+      />
+      
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/85 via-slate-900/80 to-slate-900/85" />
+      
+      {/* Additional gradient for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+      <div className="relative z-10 flex items-center justify-center h-full">
+        <div className="max-w-6xl mx-auto px-6 text-center text-white">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm tracking-wide">
+            <Award className="w-4 h-4 text-orange-400" />
+            <span className="font-semibold">Cyber AB Registered Practitioner</span>
+            <span className="text-white/60">|</span>
+            <span>Since 1999</span>
+          </div>
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight drop-shadow-2xl leading-tight">
+            Indianapolis IT Outsourcing &
+            <br />
+            <span className="text-orange-400">IT Consulting Services</span>
+          </h1>
+
+          <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto mb-12 leading-relaxed drop-shadow-lg">
+            Trusted IT outsourcing, IT consulting, managed IT services, and cybersecurity solutions for Indianapolis businesses. Expert IT outsourcing services and CMMC consulting since 1999.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            <a 
+              href="tel:317-251-7920"
+              className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold tracking-wide transition-all duration-300 transform hover:scale-105 hover:shadow-2xl rounded-lg"
+            >
+              Call 317-251-7920
+            </a>
+            <a
+              href="#it-consulting"
+              className="px-8 py-4 bg-white/10 backdrop-blur-md border-2 border-white/50 hover:border-white hover:bg-white/20 text-white font-semibold tracking-wide transition-all duration-300 transform hover:scale-105 rounded-lg"
+            >
+              View IT Services
+            </a>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            {[
+              { value: '25+', label: 'Years in Indianapolis' },
+              { value: '24/7', label: 'IT Support' },
+              { value: '99.9%', label: 'Uptime SLA' },
+              { value: 'CMMC', label: 'DoD Compliance' }
+            ].map((stat, i) => (
+              <div key={i} className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-4 hover:bg-white/20 hover:border-white/40 transition-all">
+                <div className="text-3xl font-bold text-orange-400 mb-1">{stat.value}</div>
+                <div className="text-sm text-white/90">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+/* -------------------- Services Section -------------------- */
+const ServicesSection = () => {
+  const services = [
+    {
+      id: 'it-outsourcing',
+      icon: <Cloud className="w-8 h-8" />,
+      title: "IT Outsourcing Indianapolis",
+      subtitle: "Complete Managed IT Services",
+      description: "Comprehensive IT outsourcing and managed services for Indianapolis businesses. Eliminate IT headaches with complete network management, server support, and proactive monitoring.",
+      features: [
+        "Complete Network Management",
+        "Server & Workstation Support",
+        "24/7 Monitoring & Support",
+        "Business Continuity Planning"
+      ],
+      keywords: "IT outsourcing Indianapolis, managed IT services, managed service provider"
+    },
+    {
+      id: 'it-consulting',
+      icon: <Server className="w-8 h-8" />,
+      title: "IT Consulting & Support Services",
+      subtitle: "Expert IT Support Indianapolis",
+      description: "Strategic IT consulting and 24/7 help desk support for Indianapolis businesses. Our IT consultants provide proactive system monitoring, network management, and on-site support.",
+      features: [
+        "24/7 Help Desk Support",
+        "Proactive System Monitoring", 
+        "Network Management",
+        "Strategic IT Planning"
+      ],
+      keywords: "IT support Indianapolis, IT consulting Indianapolis, help desk support"
+    },
+    {
+      id: 'cybersecurity',
+      icon: <Shield className="w-8 h-8" />,
+      title: "Cybersecurity Consulting",
+      subtitle: "Cyber AB Registered Practitioner",
+      description: "Professional cybersecurity consulting and security services in Indianapolis. As an official Cyber AB Registered Practitioner with CCSP certification, we provide DoD-level cybersecurity solutions.",
+      features: [
+        "Network Security & Monitoring",
+        "Endpoint Protection",
+        "Threat Detection & Response",
+        "Security Assessments"
+      ],
+      keywords: "cybersecurity Indianapolis, cybersecurity consulting Indianapolis, network security"
+    },
+    {
+      id: 'cmmc-compliance',
+      icon: <Award className="w-8 h-8" />,
+      title: "CMMC Consulting",
+      subtitle: "DoD Cybersecurity Certification",
+      description: "Official CMMC compliance consulting from a Cyber AB Registered Practitioner. Defense contractors need CMMC certification to win DoD contracts - we provide expert assessment and implementation support.",
+      features: [
+        "Cyber AB Registered Expertise",
+        "DoD Framework Implementation",
+        "Assessment & Certification Support",
+        "Compliance Documentation"
+      ],
+      keywords: "CMMC compliance, Cyber AB, DoD cybersecurity, defense contractor IT"
+    },
+  ];
+
+  return (
+    <section id="services" className="py-24 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <div className="inline-block mb-4 px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full text-orange-600 text-sm font-semibold tracking-wide">
+            INDIANAPOLIS IT SERVICES
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            Indianapolis IT Outsourcing & IT Consulting Services
+          </h2>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            Comprehensive IT outsourcing, IT consulting, managed services, and cybersecurity solutions for Indianapolis businesses since 1999
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              id={service.id}
+              className="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:shadow-xl hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-2 group"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300">
+                {service.icon}
+              </div>
+              
+              <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                {service.title}
+              </h3>
+
+              <div className="text-sm font-semibold text-orange-600 mb-4">
+                {service.subtitle}
+              </div>
+              
+              <p className="text-slate-600 leading-relaxed mb-6">
+                {service.description}
+              </p>
+
+              <div className="space-y-2">
+                {service.features.map((feature, i) => (
+                  <div key={i} className="flex items-center text-sm text-slate-700">
+                    <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2 flex-shrink-0" />
+                    {feature}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* -------------------- Why Choose Section -------------------- */
+const WhyChooseSection = () => {
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            Why Indianapolis Businesses Choose SIM2K
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3 flex items-center gap-3">
+                <Award className="w-6 h-6 text-orange-500" />
+                Official Credentials
+              </h3>
+              <p className="text-slate-600 leading-relaxed">
+                Cyber AB Registered Practitioner and CCSP certified for government-level cybersecurity. We provide official CMMC consulting alongside comprehensive IT outsourcing and IT consulting for Indianapolis businesses.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3 flex items-center gap-3">
+                <Shield className="w-6 h-6 text-orange-500" />
+                25+ Years Local Experience
+              </h3>
+              <p className="text-slate-600 leading-relaxed">
+                We&apos;ve been Indianapolis&apos; trusted IT outsourcing and IT consulting partner since 1999, serving small and large companies across Indiana with expert managed IT services and cybersecurity solutions.
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3 flex items-center gap-3">
+                <CheckCircle className="w-6 h-6 text-orange-500" />
+                Proactive Approach
+              </h3>
+              <p className="text-slate-600 leading-relaxed">
+                We prevent problems through continuous monitoring rather than waiting for breakdowns. Our managed services keep your Indianapolis business running smoothly 24/7.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3 flex items-center gap-3">
+                <Server className="w-6 h-6 text-orange-500" />
+                Local Support Team
+              </h3>
+              <p className="text-slate-600 leading-relaxed">
+                Real people in Indianapolis who respond quickly when you need help. Fast on-site support and 24/7 remote assistance for all your IT outsourcing and IT consulting needs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* -------------------- CTA Section -------------------- */
+const CTASection = () => {
+  return (
+    <section id="contact" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(#f97316 1px, transparent 1px), linear-gradient(90deg, #f97316 1px, transparent 1px)',
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          Talk to One of Our Friendly Techs
+        </h2>
+        <p className="text-xl text-slate-300 mb-12 leading-relaxed">
+          Get expert IT outsourcing, IT consulting, and cybersecurity solutions for your Indianapolis business. Our team is ready to help with managed services, CMMC consulting, and 24/7 IT support.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+          <a
+            href="tel:317-251-7920"
+            className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold tracking-wide transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-orange-500/50 rounded-lg text-lg"
+          >
+            Call 317-251-7920
+          </a>
+          <a
+            href="mailto:sales@sim2k.com"
+            className="px-8 py-4 bg-transparent border-2 border-white/50 hover:border-white hover:bg-white/10 text-white font-semibold tracking-wide transition-all duration-300 transform hover:scale-105 rounded-lg"
+          >
+            Email sales@sim2k.com
+          </a>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <p className="text-slate-400 text-lg mb-2">
+            <strong className="text-white">SIM2K, Inc.</strong>
+          </p>
+          <p className="text-slate-400">
+            7160 Graham Road, Suite 100<br />
+            Indianapolis, IN 46250
+          </p>
+          <p className="text-slate-500 text-sm mt-6">
+            Serving Indianapolis, Carmel, Fishers & Surrounding Indiana Areas
+          </p>
+          <p className="text-slate-500 text-xs mt-4 italic">
+            SIM2K has been the trusted IT outsourcing and IT consulting provider for Indianapolis since 1999.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* -------------------- Main Component -------------------- */
+const Sim2kLanding = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  return (
+    <>
+      <SEOHead />
+      <div className="min-h-screen bg-slate-50">
+        <Navigation
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+        />
+
+        <div className={isMobileMenuOpen ? 'blur-sm md:blur-0' : ''}>
+          <HeroSection />
+          <ServicesSection />
+          <WhyChooseSection />
+          <CTASection />
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Sim2kLanding;
