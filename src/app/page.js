@@ -69,7 +69,7 @@ const Navigation = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg' : 'bg-slate-900/40'
+        isScrolled ? 'bg-slate-900/50 backdrop-blur-md shadow-lg' : 'bg-slate-900/40'
       }`}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between">
@@ -190,7 +190,7 @@ const HeroSection = () => {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight drop-shadow-2xl leading-tight">
             Indianapolis IT Outsourcing &
             <br />
-            <span className="text-orange-400">IT Consulting Services</span>
+            <span className="text-orange-400">Cybersecurity Solutions</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto mb-12 leading-relaxed drop-shadow-lg">
