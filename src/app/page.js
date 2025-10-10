@@ -83,10 +83,11 @@ const Navigation = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
 
             <div className="hidden md:flex items-center space-x-8 text-white/90">
               {[
-                ['#it-outsourcing', 'IT Outsourcing'],
-                ['#it-consulting', 'IT Consulting'],
+                ['#it-outsourcing', 'IT Services'],
+                // ['#it-consulting', 'IT Consulting'],
                 ['#cybersecurity', 'Cybersecurity'],
                 ['#cmmc-consulting', 'CMMC Consulting'],
+                ['/', 'Unified Communication']
               ].map(([href, label]) => (
                 <a
                   key={label}
