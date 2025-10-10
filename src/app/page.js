@@ -213,11 +213,11 @@ const HeroSection = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
               { value: '25+', label: 'Years in Indianapolis' },
               { value: '24/7', label: 'IT Support' },
-              { value: '99.9%', label: 'Uptime SLA' },
+              // { value: '99.9%', label: 'Uptime SLA' },
               { value: 'CMMC', label: 'DoD Compliance' }
             ].map((stat, i) => (
               <div key={i} className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-4 hover:bg-white/20 hover:border-white/40 transition-all">
