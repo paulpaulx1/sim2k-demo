@@ -231,6 +231,202 @@ const HeroSection = () => {
     </div>
   );
 };
+const SEOOpportunitiesSection = () => {
+  return (
+    <section className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <div className="inline-block mb-4 px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full text-orange-400 text-sm font-semibold tracking-wide">
+            SEO GROWTH STRATEGY
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Untapped Search Opportunities
+          </h2>
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            Strategic keyword targeting to capture 1,500+ monthly searches currently going to competitors
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          {/* Current Performance */}
+          <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400" />
+              Current Rankings
+            </h3>
+            <div className="space-y-4">
+              <div className="border-l-4 border-green-400 pl-4">
+                <div className="text-slate-300 text-sm mb-1">Indianapolis IT Outsourcing</div>
+                <div className="text-white font-semibold">Position #8 <span className="text-slate-400 text-sm">(50 searches/month)</span></div>
+              </div>
+              <div className="border-l-4 border-green-400 pl-4">
+                <div className="text-slate-300 text-sm mb-1">IT Outsourcing Indianapolis</div>
+                <div className="text-white font-semibold">Position #10 <span className="text-slate-400 text-sm">(170 searches/month)</span></div>
+              </div>
+              <div className="border-l-4 border-yellow-400 pl-4">
+                <div className="text-slate-300 text-sm mb-1">IT Consulting Indianapolis</div>
+                <div className="text-white font-semibold">Not Ranking <span className="text-slate-400 text-sm">(170 searches/month)</span></div>
+              </div>
+            </div>
+          </div>
+
+          {/* High-Priority Opportunities */}
+          <div className="bg-slate-800/50 backdrop-blur-sm border border-orange-500/30 rounded-xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <Award className="w-6 h-6 text-orange-400" />
+              High-Priority Targets
+            </h3>
+            <div className="space-y-4">
+              <div className="border-l-4 border-orange-400 pl-4">
+                <div className="text-orange-400 font-semibold mb-1">Managed IT Services Indianapolis</div>
+                <div className="text-slate-300 text-sm">480 monthly searches + 2,000 variations</div>
+                <div className="text-green-400 text-sm font-medium mt-1">✓ Easy Difficulty</div>
+              </div>
+              <div className="border-l-4 border-orange-400 pl-4">
+                <div className="text-orange-400 font-semibold mb-1">Cybersecurity Indianapolis</div>
+                <div className="text-slate-300 text-sm">110 monthly searches + 770 variations</div>
+                <div className="text-green-400 text-sm font-medium mt-1">✓ Easy Difficulty</div>
+              </div>
+              <div className="border-l-4 border-orange-400 pl-4">
+                <div className="text-orange-400 font-semibold mb-1">CMMC Consultant</div>
+                <div className="text-slate-300 text-sm">590 monthly searches + 3,000 variations</div>
+                <div className="text-green-400 text-sm font-medium mt-1">✓ Easy Difficulty</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Strategic Implementation */}
+        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8">
+          <h3 className="text-2xl font-bold text-white mb-6">Strategic Implementation Plan</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <div className="text-orange-400 font-semibold mb-2">Keyword Integration</div>
+              <ul className="text-slate-300 text-sm space-y-2">
+                <li>• Optimized meta tags</li>
+                <li>• Structured data markup</li>
+                <li>• Natural keyword placement</li>
+              </ul>
+            </div>
+            <div>
+              <div className="text-orange-400 font-semibold mb-2">Landing Pages</div>
+              <ul className="text-slate-300 text-sm space-y-2">
+                <li>• /managed-it-services</li>
+                <li>• /cybersecurity</li>
+                <li>• /cmmc-consultant</li>
+              </ul>
+            </div>
+            <div>
+              <div className="text-orange-400 font-semibold mb-2">Technical SEO</div>
+              <ul className="text-slate-300 text-sm space-y-2">
+                <li>• Fast page load times</li>
+                <li>• Mobile optimization</li>
+                <li>• Clean URL structure</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* -------------------- Why Rebuild Section -------------------- */
+const WhyRebuildSection = () => {
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            Why Rebuild Instead of WordPress Updates?
+          </h2>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            Modern web architecture delivers better performance, security, and SEO results
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12 mb-12">
+          <div>
+            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+              <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                <X className="w-6 h-6 text-red-600" />
+              </div>
+              WordPress Limitations
+            </h3>
+            <ul className="space-y-4">
+              <li className="flex gap-3">
+                <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
+                <div>
+                  <div className="font-semibold text-slate-900">Ongoing Maintenance</div>
+                  <div className="text-slate-600 text-sm">Constant plugin updates required for security</div>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
+                <div>
+                  <div className="font-semibold text-slate-900">Performance Issues</div>
+                  <div className="text-slate-600 text-sm">Slow load times hurt SEO and conversions</div>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
+                <div>
+                  <div className="font-semibold text-slate-900">Limited Control</div>
+                  <div className="text-slate-600 text-sm">Constrained by theme and plugin limitations</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                <CheckCircle className="w-6 h-6 text-green-600" />
+              </div>
+              Modern Architecture
+            </h3>
+            <ul className="space-y-4">
+              <li className="flex gap-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+                <div>
+                  <div className="font-semibold text-slate-900">Zero Maintenance</div>
+                  <div className="text-slate-600 text-sm">No plugins to update or security patches needed</div>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+                <div>
+                  <div className="font-semibold text-slate-900">Inherently Secure</div>
+                  <div className="text-slate-600 text-sm">Static files with no database to exploit</div>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+                <div>
+                  <div className="font-semibold text-slate-900">Lightning Fast</div>
+                  <div className="text-slate-600 text-sm">Optimized performance boosts SEO rankings</div>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+                <div>
+                  <div className="font-semibold text-slate-900">Full Customization</div>
+                  <div className="text-slate-600 text-sm">Built exactly to your specifications</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="bg-slate-50 border border-slate-200 rounded-xl p-8 text-center">
+          <p className="text-slate-600 text-lg">
+            Your new site is built with modern HTML, JavaScript, and CSS - delivering a fast, secure, and SEO-optimized experience without the complexity and vulnerabilities of WordPress. It will be hosted for free in perpetuity on <a className="font-semibold text-slate-900" href="https://vercel.com">Vercel</a> barring any unexpected traffic spikes.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 /* -------------------- Services Section -------------------- */
 const ServicesSection = () => {
@@ -480,6 +676,8 @@ const Sim2kLanding = () => {
           <ServicesSection />
           <WhyChooseSection />
           <CTASection />
+          <SEOOpportunitiesSection/>
+          <WhyRebuildSection />
         </div>
       </div>
     </>
